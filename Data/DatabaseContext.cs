@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TrinchPhotos_Web.Database.Models;
+using TrinchPhotosAPI.Database.Models;
 
 namespace TrinchPhotosAPI.Data
 {
@@ -14,7 +14,7 @@ namespace TrinchPhotosAPI.Data
 
         public DatabaseContext()
         {
-
+            // just in case
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
