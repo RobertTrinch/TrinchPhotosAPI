@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TrinchPhotosAPI.Database.Models;
+using TrinchPhotosAPI.Data.Models;
 
 namespace TrinchPhotosAPI.Data
 {
@@ -10,18 +11,23 @@ namespace TrinchPhotosAPI.Data
         public DbSet<Creators> Creators { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<Settings> Settings { get; set; }
-        public string DbPath { get; }
+        public DbSet<Portfolio> Portfolio { get; set; }
+
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
+        {
+
+        }
 
         public DatabaseContext()
         {
-            // just in case
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlite($"Data Source=sqlite-database-path");
-            optionsBuilder.UseNpgsql("postgresql-db-connectionstring");
+            optionsBuilder.UseNpgsql("postgresql-connstring");
         }
+        public DbSet<TrinchPhotosAPI.Data.Models.Products> Products { get; set; } = default!;
 
     }
 }

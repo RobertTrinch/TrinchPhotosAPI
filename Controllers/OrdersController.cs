@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TrinchPhotosAPI.Data;
-using TrinchPhotos_Web.Database.Models;
+using TrinchPhotosAPI.Database.Models;
 
 namespace TrinchPhotosAPI.Controllers
 {
@@ -45,7 +45,10 @@ namespace TrinchPhotosAPI.Controllers
                 return BadRequest();
             }
 
+
             _context.Entry(orders).State = EntityState.Modified;
+            // Prevent the OrderId from being modified
+            _context.Entry(orders).Property(o => o.OrderId).IsModified = false;
 
             try
             {
